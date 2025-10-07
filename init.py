@@ -1,36 +1,43 @@
-import os
-import urllib.request
-import zipfile
+course_id = 'Taller-1-Data-Streaming'
+github_repo = 'danielfce01/%s' % course_id
+zip_file_url = "https://github.com/%s/archive/refs/heads/main.zip" % github_repo
+
+def get_last_modif_date(localdir):
+    try:
+        import time, os, pytz
+        import datetime
+        k = datetime.datetime.fromtimestamp(max(os.path.getmtime(root) for root,_,_ in os.walk(localdir)))
+        localtz = datetime.datetime.now(datetime.timezone(datetime.timedelta(0))).astimezone().tzinfo
+        k = k.astimezone(localtz)
+        return k
+    except Exception:
+        return None
+
+import requests, zipfile, io, os, shutil
 
 def init(force_download=False):
-    """
-    Descarga y prepara las carpetas 'gen-py' y 'local/data' desde el repositorio.
-    """
+    if force_download or not os.path.exists("local"):
+        print("⬇️ Replicando recursos del repositorio...")
+        dirname = course_id + "-main/"
 
-    # URL del ZIP del repo (ajusta si tu repo tiene otro nombre)
-    repo_zip_url = "https://github.com/danielfce01/Taller-1-Data-Streaming/archive/refs/heads/main.zip"
-    zip_path = "repo.zip"
+        if os.path.exists(dirname):
+            shutil.rmtree(dirname)
 
-    if force_download or not os.path.exists(zip_path):
-        print("⬇️ Descargando repositorio desde GitHub...")
-        urllib.request.urlretrieve(repo_zip_url, zip_path)
+        r = requests.get(zip_file_url)
+        z = zipfile.ZipFile(io.BytesIO(r.content))
+        z.extractall()
+
+        if os.path.exists("local"):
+            shutil.rmtree("local")
+
+        shutil.move(dirname + "/local", "local")
+
+        if os.path.exists("gen-py"):
+            shutil.rmtree("gen-py")
+        shutil.move(dirname + "/gen-py", "gen-py")
+
+        shutil.rmtree(dirname)
+        print("✅ Carpetas 'local' y 'gen-py' listas para usar.")
     else:
-        print("✅ Archivo ZIP ya descargado localmente.")
-
-    extract_path = "repo"
-    if not os.path.exists(extract_path):
-        print("📦 Extrayendo archivos...")
-        with zipfile.ZipFile(zip_path, "r") as zip_ref:
-            zip_ref.extractall(extract_path)
-    else:
-        print("✅ Archivos ya extraídos.")
-
-    repo_name = os.listdir(extract_path)[0]
-    src_path = os.path.join(extract_path, repo_name)
-
-    os.makedirs("local", exist_ok=True)
-    os.system(f"cp -r {src_path}/gen-py .")
-    os.system(f"cp -r {src_path}/local/data local/")
-
-    print("✅ Carpetas 'gen-py' y 'local/data' listas para usar.")
+        print("✅ Recursos locales ya disponibles.")
 
