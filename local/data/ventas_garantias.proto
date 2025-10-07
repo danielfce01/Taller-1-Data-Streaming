@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+message VentaGarantia {
+    int32 id = 1;
+    string comprador = 2;
+    int64 cedula = 3;
+    string categoria = 4;
+    string producto = 5;
+    int64 precio = 6;
+    string metodo_pago = 7;
+    string fecha_venta = 8;
+    string fecha_garantia = 9;
+    string solucion = 10;
+    string queja = 11;
+}

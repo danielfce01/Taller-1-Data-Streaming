@@ -1,0 +1,54 @@
+[
+    {
+        "ID": 1,
+        "Comprador": "Daniel",
+        "Cedula": 1002654481,
+        "Categoria": "Cocina",
+        "Producto": "nevera",
+        "Precio": 6000000,
+        "Metodo Pago": "efectivo",
+        "Fecha Venta": "01-01-2026",
+        "Fecha Garantia": "01-02-2026",
+        "Solucion": "reembolso",
+        "Queja": "Producto defectuoso"
+    },
+    {
+        "ID": 2,
+        "Comprador": "Juan Sebastian",
+        "Cedula": 1152470566,
+        "Categoria": "Entretenimiento",
+        "Producto": "televisor",
+        "Precio": 5000000,
+        "Metodo Pago": "Tarjeta credito",
+        "Fecha Venta": "01-02-2026",
+        "Fecha Garantia": "02-02-2026",
+        "Solucion": "Envio de partes",
+        "Queja": "Partes faltantes"
+    },
+    {
+        "ID": 3,
+        "Comprador": "Jhon",
+        "Cedula": 1035422452,
+        "Categoria": "Limpieza",
+        "Producto": "lavadora",
+        "Precio": 4000000,
+        "Metodo Pago": "efectivo",
+        "Fecha Venta": "01-03-2026",
+        "Fecha Garantia": "02-03-2026",
+        "Solucion": "Cambio de producto",
+        "Queja": "Producto defectuoso"
+    },
+    {
+        "ID": 4,
+        "Comprador": "Alex",
+        "Cedula": 71738911,
+        "Categoria": "Entrenamiento",
+        "Producto": "Computador",
+        "Precio": 10000000,
+        "Metodo Pago": "Tarjeta debito",
+        "Fecha Venta": "01-04-2026",
+        "Fecha Garantia": "02-04-2026",
+        "Solucion": "Cambio de producto",
+        "Queja": "Producto equivocado"
+    }
+]
