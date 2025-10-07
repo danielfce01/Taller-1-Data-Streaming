@@ -1,6 +1,6 @@
 course_id = 'Taller-1-Data-Streaming'
 github_repo = 'danielfce01/%s' % course_id
-zip_file_url = "https://github.com/%s/archive/master.zip" % github_repo
+zip_file_url = "https://github.com/%s/archive/main.zip" % github_repo
 
 def get_last_modif_date(localdir):
     try:
@@ -27,5 +27,6 @@ def init(force_download=False):
             shutil.rmtree("local")
         shutil.move(dirname+"/local", "local")
         shutil.rmtree(dirname)
+
 
 
